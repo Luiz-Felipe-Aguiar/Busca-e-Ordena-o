@@ -11,6 +11,14 @@ public class Contato {
         this.email = email;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     @Override
     public String toString() {
         return "Nome: " + nome + ", Telefone: " + telefone + ", Email: " + email;
@@ -98,6 +106,26 @@ class VetorContatos {
         }
     }
 
+    // 9. Pesquisa por nome
+    public Contato pesquisarPorNome(String nome) {
+        for (int i = 0; i < tamanho; i++) {
+            if (contatos[i].getNome().equalsIgnoreCase(nome)) {
+                return contatos[i];
+            }
+        }
+        return null;
+    }
+
+    // 10. Pesquisa por e-mail
+    public Contato pesquisarPorEmail(String email) {
+        for (int i = 0; i < tamanho; i++) {
+            if (contatos[i].getEmail().equalsIgnoreCase(email)) {
+                return contatos[i];
+            }
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         VetorContatos contato = new VetorContatos();
         Contato contato1 = new Contato("João", "123456789", "joao@example.com");
@@ -123,6 +151,14 @@ class VetorContatos {
 
         contato.removerContato(contato1);
         contato.imprimirContatos();
+
+        // Teste de pesquisa por nome
+        Contato contatoPesquisadoPorNome = contato.pesquisarPorNome("Maria");
+        System.out.println("Contato pesquisado por nome 'Maria': " + contatoPesquisadoPorNome);
+
+        // Teste de pesquisa por e-mail
+        Contato contatoPesquisadoPorEmail = contato.pesquisarPorEmail("pedro@example.com");
+        System.out.println("Contato pesquisado por e-mail 'pedro@example.com': " + contatoPesquisadoPorEmail);
     }
 }
 
